@@ -5,14 +5,18 @@ import cors from "cors";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // ✅ middlewares
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 
 // ✅ Gemini API setup (API key backend me rakho)
 const genAI = new GoogleGenerativeAI("AIzaSyBEabtiGcj6edN1vdY1n6qXozFSJKQe7Kw");  // <-- apni key yahan daalo
+
+app.get("/", (req, res) => {
+  res.send("🚀 Chatbot Backend is live!");
+});
 
 // ✅ Chat endpoint
 app.post("/chat", async (req, res) => {

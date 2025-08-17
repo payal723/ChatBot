@@ -30,3 +30,11 @@ function addMessage(text, sender) {
   chatBox.appendChild(div);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+// ✅ Trigger sendMessage when Enter is pressed
+document.getElementById("user-input").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // prevent new line
+    sendMessage();
+  }
+});
